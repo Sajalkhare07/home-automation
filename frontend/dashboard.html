@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HomeAuto — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="dashboard-page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">⌂ HomeAuto</div>
+    <div class="nav-right">
+      <span id="user-name" class="nav-user"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main-content">
+
+    <!-- Stats bar -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <span class="stat-number" id="total-devices">0</span>
+        <span class="stat-label">Total Devices</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="online-devices">0</span>
+        <span class="stat-label">Online</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="offline-devices">0</span>
+        <span class="stat-label">Offline</span>
+      </div>
+    </div>
+
+    <!-- Device section header -->
+    <div class="section-header">
+      <h2>My Devices</h2>
+      <button class="btn-add" onclick="openAddModal()">+ Add Device</button>
+    </div>
+
+    <!-- Device grid -->
+    <div id="device-grid" class="device-grid">
+      <div class="loading-state">Loading devices...</div>
+    </div>
+
+  </main>
+
+  <!-- Add Device Modal -->
+  <div id="add-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Add New Device</h3>
+        <button class="modal-close" onclick="closeAddModal()">✕</button>
+      </div>
+      <form onsubmit="handleAddDevice(event)">
+        <div class="form-group">
+          <label>Device Name</label>
+          <input type="text" id="d-name" placeholder="Living Room Light" required/>
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <select id="d-type">
+            <option value="light">💡 Light</option>
+            <option value="fan">🌀 Fan</option>
+            <option value="ac">❄️ AC</option>
+            <option value="socket">🔌 Socket</option>
+            <option value="other">📦 Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="d-location" placeholder="Living Room"/>
+        </div>
+        <div class="form-group">
+          <label>GPIO Pin</label>
+          <input type="number" id="d-pin" placeholder="5" min="0" max="40" required/>
+        </div>
+        <div id="add-error" class="error-msg hidden"></div>
+        <button type="submit" class="btn-primary">Add Device</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
